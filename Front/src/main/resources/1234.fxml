@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:controller="com.front.end.Controller.UserController" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="561.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Домой">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="900.0">
+                     <children>
+                        <Text layoutX="510.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Приложение разработано Шлепой в тазике. Наш девиз - много мяса, мало теста!" wrappingWidth="400">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="459.0" fitWidth="448.0" layoutX="48.0" layoutY="38.0">
+                           <image>
+                              <Image url="/defnothentai2.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Клиент" >
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="900.0">
+                     <children>
+                        <TextField fx:id="searchUserText" layoutX="280.0" layoutY="14.0" promptText="Поиск" />
+                        <ListView onMouseClicked="#UserChose" fx:id="userList" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
+                        <Button onMouseClicked="#UserNew" layoutX="626.0" layoutY="490.0" mnemonicParsing="false" text="Новый" />
+                        <Button  onMouseClicked="#UserSave" layoutX="687.0" layoutY="490.0" mnemonicParsing="false" text="Сохранить изменения" />
+                        <Button onMouseClicked="#UserDel" layoutX="832.0" layoutY="490.0" mnemonicParsing="false" text="Удалить" />
+                        <TextField fx:id="userNameText" layoutX="394.0" layoutY="85.0" promptText="Имя" />
+                        <TextField fx:id="userPhoneText" layoutX="394.0" layoutY="138.0" promptText="Телефон" />
+                        <Text layoutX="300.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО Клиента" />
+                        <Text layoutX="312.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Телефон" />
+                        <Text layoutX="321.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+                        <TextField fx:id="userMailText" layoutX="394.0" layoutY="193.0" promptText="Email" />
+                        <Text fx:id="userId" layoutX="676.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Работник">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="900.0">
+                     <children>
+                        <ListView onMouseClicked="#EmpChose" fx:id="empList" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
+                        <Button onMouseClicked="#EmpNew" layoutX="626.0" layoutY="490.0" mnemonicParsing="false" text="Новый" />
+                        <Button onMouseClicked="#EmpSave" layoutX="687.0" layoutY="490.0" mnemonicParsing="false" text="Сохранить изменения" />
+                        <Button onMouseClicked="#EmpDel" layoutX="832.0" layoutY="490.0" mnemonicParsing="false" text="Удалить" />
+                        <TextField fx:id="empNameText" layoutX="394.0" layoutY="85.0" promptText="Имя" />
+                        <TextField fx:id="empPhoneText" layoutX="394.0" layoutY="138.0" promptText="Телефон" />
+                        <ChoiceBox fx:id="empRoleChose" layoutX="394.0" layoutY="200.0" prefWidth="150.0" />
+                        <Text layoutX="292.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО Работника" />
+                        <Text layoutX="312.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Телефон" />
+                        <Text fx:id="EmpIdText" layoutX="669.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Предметы">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="900.0">
+                     <children>
+                        <ListView onMouseClicked="#itemChose" fx:id="itemList" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
+                        <Button onMouseClicked="#itemNew" layoutX="626.0" layoutY="490.0" mnemonicParsing="false" text="Новый" />
+                        <Button onMouseClicked="#itemSave" layoutX="687.0" layoutY="490.0" mnemonicParsing="false" text="Сохранить изменения" />
+                        <Button onMouseClicked="#itemDel" layoutX="832.0" layoutY="490.0" mnemonicParsing="false" text="Удалить" />
+                        <TextField fx:id="itemNameText" layoutX="406.0" layoutY="86.0" promptText="Название" />
+                        <Text layoutX="281.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название предмета" />
+                        <Text layoutX="297.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип предмета" />
+                        <Text fx:id="itemId" layoutX="676.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+                        <ChoiceBox fx:id="itemTypeChose" layoutX="405.0" layoutY="137.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Возврат">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="900.0">
+                     <children>
+                        <ListView onMouseClicked="#orderChose" fx:id="orderList" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
+                        <Button onMouseClicked="#orderNew" layoutX="626.0" layoutY="490.0" mnemonicParsing="false" text="Новый" />
+                        <Button onMouseClicked="#orderSave" layoutX="687.0" layoutY="490.0" mnemonicParsing="false" text="Сохранить изменения" />
+                        <Button onMouseClicked="#orderDel" layoutX="832.0" layoutY="490.0" mnemonicParsing="false" text="Удалить" />
+                        <TextField fx:id="orderNameText" layoutX="394.0" layoutY="85.0" promptText="Название" />
+                        <Text layoutX="290.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название заказа" />
+                        <Text layoutX="322.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата" />
+                        <Text layoutX="316.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Клиент" />
+                        <Text fx:id="OrderTextId" layoutX="676.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+                        <DatePicker fx:id="datePicker" layoutX="393.0" layoutY="137.0" prefHeight="26.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="UserListChose" layoutX="393.0" layoutY="193.0" prefWidth="150.0" />
+                        <ListView fx:id="itemMonitor" layoutX="295.0" layoutY="276.0" prefHeight="136.0" prefWidth="290.0" />
+                        <ChoiceBox fx:id="itemListChose" layoutX="454.0" layoutY="243.0" prefWidth="150.0" />
+                        <Text layoutX="268.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Список потерянных предметов" />
+                        <Button onMouseClicked="#deleteItemFromMonitor" layoutX="370.0" layoutY="412.0" mnemonicParsing="false" text="Удалить" />
+                        <Button onMouseClicked="#addItemToMonitor" layoutX="296.0" layoutY="412.0" mnemonicParsing="false" text="Добавить" />
+
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+           <Tab text="Поисковик" onSelectionChanged="#updateSearchLists">
+              <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="900.0">
+                    <children>
+                       <ListView fx:id="userListSearch" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
+                       <ListView fx:id="itemListSearch" layoutX="460.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
+                       <TextField fx:id="searchUserSearchList" layoutX="280.0" layoutY="14.0" promptText="Поиск по клиентам" />
+                       <TextField fx:id="searchItemSearchList" layoutX="728.0" layoutY="14.0" promptText="Поиск по вещам" />
+
+                    </children>
+                 </AnchorPane>
+              </content>
+           </Tab>
+        </tabs>
+      </TabPane>
+      <Line endX="799.2929077148438" endY="-3.7697300910949707" startX="-100.0" strokeWidth="5.0" />
+      <Pane prefHeight="30.0" prefWidth="906.0">
+         <children>
+            <Text layoutX="575.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Текущий работник" textAlignment="CENTER" wrappingWidth="188.53680419921875">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="20.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2021(с) Shlepa Networks" textAlignment="CENTER" wrappingWidth="188.53680419921875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="currentEmp" onHidden="#setSystemEmp" layoutX="740.0" prefWidth="150.0" />
+         </children>
+      </Pane>
+   </children>
+</VBox>
