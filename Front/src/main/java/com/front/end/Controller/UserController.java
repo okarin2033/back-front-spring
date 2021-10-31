@@ -5,10 +5,7 @@ import com.front.end.APICALL.ApiInterface;
 import com.front.end.DTO.*;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import lombok.SneakyThrows;
@@ -21,6 +18,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class UserController implements Initializable {
+
+
+    public TabPane TabPanel;
+    public TextField searchUserSearchListPhone;
 
 
     ObjectMapper objectMapper = new ObjectMapper();
@@ -65,6 +66,7 @@ public class UserController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        buttonBasedOnBoth.setDisable(true);
         FillUserList();
         FillEmpList();
         FillItemList();
@@ -218,7 +220,6 @@ public class UserController implements Initializable {
         orderList.getSelectionModel().getSelectedItem().setId((long) Integer.parseInt(newId));
         OrderTextId.setText("ID:"+newId);
     }
-
     public void orderSave(MouseEvent mouseEvent) throws IOException {
         orderList.getSelectionModel().getSelectedItem().setUser(UserListChose.getSelectionModel().getSelectedItem());
         orderList.getSelectionModel().getSelectedItem().setEmployee(SelectedEmp);
@@ -228,7 +229,6 @@ public class UserController implements Initializable {
         //orderDto.setPayment();
         ApiInterface.sendPost(orderList.getSelectionModel().getSelectedItem(), "order/upd");
     }
-
     public void orderDel(MouseEvent mouseEvent) throws IOException {
         TextDto text = new TextDto();
         text.setText(orderList.getSelectionModel().getSelectedItem().getId()+"");
@@ -236,15 +236,12 @@ public class UserController implements Initializable {
         orderList.getItems().remove(orderList.getSelectionModel().getSelectedItem());
         ApiInterface.sendPost(text, "order/del");
     }
-
     public void deleteItemFromMonitor(MouseEvent mouseEvent) {
         itemMonitor.getItems().remove(itemMonitor.getSelectionModel().getSelectedItem());
     }
-
     public void addItemToMonitor(MouseEvent mouseEvent) {
         itemMonitor.getItems().add(itemListChose.getSelectionModel().getSelectedItem());
     }
-
     public void orderChose(MouseEvent mouseEvent) {
         itemListChose.getItems().clear();
         itemListChose.getItems().setAll(itemList.getItems());
@@ -262,7 +259,6 @@ public class UserController implements Initializable {
         }
     }
 
-
     public ChoiceBox<EmpDto> currentEmp;
     public EmpDto SelectedEmp;
     public void setSystemEmp(Event mouseEvent) {
@@ -270,15 +266,92 @@ public class UserController implements Initializable {
         System.out.println(SelectedEmp);
     }
 
-
     public ListView<UsersDto> userListSearch;
     public ListView<ItemDto> itemListSearch;
+
+    public TextField searchUserSearchList;
+    public TextField searchItemSearchList;
+
     public void updateSearchLists(Event mouseEvent) {
         userListSearch.getItems().clear();
         itemListSearch.getItems().clear();
         userListSearch.getItems().addAll(userList.getItems());
         itemListSearch.getItems().addAll(itemList.getItems());
 
+        searchUserSearchList.textProperty().addListener((observable, oldValue, newValue) -> {
+            for (UsersDto user: userList.getItems()){
+                if (user.getName().contains(newValue)) {
+                    userListSearch.getSelectionModel().select(user);
+                    userListSearch.scrollTo(user);
+                    break;
+                }
+
+            }
+        });
+
+        searchItemSearchList.textProperty().addListener((observable, oldValue, newValue) -> {
+            for (ItemDto item: itemList.getItems()){
+                if (item.getName().contains(newValue)) {
+                    itemListSearch.getSelectionModel().select(item);
+                    itemListSearch.scrollTo(item);
+                    break;
+                }
+            }
+        });
+
+    }
+
+    UsersDto selectedUser;
+    ItemDto selectedItem;
+    public Button buttonBasedOnBoth;
+
+    public void createBasedItem(MouseEvent mouseEvent) throws Exception {
+        TabPanel.getSelectionModel().selectPrevious();
+        orderNew(mouseEvent);
+        OrderDto order=orderList.getSelectionModel().getSelectedItem();
+        ArrayList<ItemDto> list= new ArrayList<>();
+        list.add(selectedItem);
+        order.setItemList(list);
+        orderChose(mouseEvent);
+        orderNameText.setText("Based on item \""+selectedItem.getName()+"\"");
+    }
+    public void createBasedUser(MouseEvent mouseEvent) throws Exception {
+        TabPanel.getSelectionModel().selectPrevious();
+        orderNew(mouseEvent);
+        OrderDto order=orderList.getSelectionModel().getSelectedItem();
+        order.setUser(selectedUser);
+        orderChose(mouseEvent);
+        orderNameText.setText("Based on item \""+selectedItem.getName()+"\"");
+    }
+    public void createBasedBoth(MouseEvent mouseEvent) throws Exception {
+        TabPanel.getSelectionModel().selectPrevious();
+        orderNew(mouseEvent);
+        OrderDto order=orderList.getSelectionModel().getSelectedItem();
+        ArrayList<ItemDto> list= new ArrayList<>();
+        list.add(selectedItem);
+        order.setItemList(list);
+        order.setUser(selectedUser);
+        orderChose(mouseEvent);
+        orderNameText.setText("Based on Item -\""+selectedItem.getName()+"\" and User -\""+selectedUser+"\"");
+
+    }
+    public Text selectedUserText;
+    public Text selectedItemText;
+    public void selectSearchUser(MouseEvent mouseEvent) {
+    selectedUser=userListSearch.getSelectionModel().getSelectedItem();
+    selectedUserText.setText("Выбраный пользователь - \n"+selectedUser);
+        System.out.println(selectedUser);
+        if (selectedUser!=null && selectedItem!=null){
+            buttonBasedOnBoth.setDisable(true);
+        }
+    }
+    public void selectSearchItem(MouseEvent mouseEvent) {
+    selectedItem=itemListSearch.getSelectionModel().getSelectedItem();
+    selectedItemText.setText("Выбраный предмет - \n"+selectedItem);
+        System.out.println(selectedItem);
+        if (selectedUser!=null && selectedItem!=null){
+            buttonBasedOnBoth.setDisable(false);
+        }
     }
     ///Search
 

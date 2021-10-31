@@ -31,6 +31,7 @@ public class OrderController {
         orders.setPayment(paymentRep.getById(1L));
         orders.setUser(userRep.getById((long) orderDto.getUser().getUserId()));
         orders.setEmployee(empRep.getById(orderDto.getEmployee().getId()));
+        orders.setDate(orderDto.getDate());
         orders.getItemList().clear();
         System.out.println(orderDto.getItemList());
         for (ItemDto item: orderDto.getItemList()){

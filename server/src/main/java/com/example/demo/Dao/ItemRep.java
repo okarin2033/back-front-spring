@@ -8,4 +8,5 @@ public interface ItemRep extends JpaRepository<Item, Long> {
     @Transactional
     public void deleteByName(String name);
     Item getItemByName(String name);
+
 }
