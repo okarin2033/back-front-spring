@@ -157,9 +157,9 @@
                        <ListView onMouseClicked="#selectSearchUser" fx:id="userListSearch" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
                        <ListView onMouseClicked="#selectSearchItem" fx:id="itemListSearch" layoutX="460.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
                        <TextField fx:id="searchUserSearchList" layoutX="280.0" layoutY="14.0" promptText="Поиск по клиентам" />
-                       <TextField fx:id="searchUserSearchListPhone" layoutX="280.0" layoutY="14.0" promptText="Поиск по клиентам" />
+                       <TextField fx:id="searchUserSearchListPhone" layoutX="280.0" layoutY="14.0" promptText="Поиск по клиентам" visible="false"/>
                        <TextField fx:id="searchItemSearchList" layoutX="728.0" layoutY="14.0" promptText="Поиск по вещам" />
-                       <TextField fx:id="searchItemSearchListPhone" layoutX="728.0" layoutY="14.0" promptText="Поиск по вещам" />
+                       <TextField fx:id="searchItemSearchListPhone" layoutX="728.0" layoutY="14.0" promptText="Поиск по вещам" visible="false"/>
                        <Button onMouseClicked="#createBasedItem" layoutX="710.0" layoutY="450.0" mnemonicParsing="false" text="Создать возврат на основании" />
                        <Button onMouseClicked="#createBasedUser" layoutX="266.0" layoutY="450.0" mnemonicParsing="false" text="Создать возврат на основании" />
                        <Button fx:id="buttonBasedOnBoth" onMouseClicked="#createBasedBoth" layoutX="710.0" layoutY="490.0" mnemonicParsing="false" text="На основании обоих" />

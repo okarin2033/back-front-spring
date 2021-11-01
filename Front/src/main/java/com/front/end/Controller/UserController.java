@@ -283,6 +283,7 @@ public class UserController implements Initializable {
                 if (user.getName().contains(newValue)) {
                     userListSearch.getSelectionModel().select(user);
                     userListSearch.scrollTo(user);
+                    System.out.println(user.getName());
                     break;
                 }
 
@@ -294,6 +295,7 @@ public class UserController implements Initializable {
                 if (item.getName().contains(newValue)) {
                     itemListSearch.getSelectionModel().select(item);
                     itemListSearch.scrollTo(item);
+                    System.out.println(item.getName());
                     break;
                 }
             }
