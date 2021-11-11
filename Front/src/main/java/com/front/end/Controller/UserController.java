@@ -3,6 +3,8 @@ package com.front.end.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.front.end.APICALL.ApiInterface;
 import com.front.end.DTO.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,8 +26,9 @@ public class UserController implements Initializable {
     public TextField searchUserSearchListPhone;
 
 
-    ObjectMapper objectMapper = new ObjectMapper();
 
+    ObjectMapper objectMapper = new ObjectMapper();
+    public ChoiceBox<String> filterUser;
 
     public ListView<UsersDto> userList;
     public ListView<EmpDto> empList;
@@ -80,7 +83,17 @@ public class UserController implements Initializable {
             }
         });
 
+        {
+            filterUser.getItems().add("Имя");
+            filterUser.getItems().add("Телефон");
+            filterUser.getItems().add("E-mail");
+        }
 
+        TabPanel.getSelectionModel().selectedIndexProperty().addListener(
+                (ov, oldTab, newTab) -> {
+                    resetFilters();
+                }
+        );
     } //!!!
 
     public TextField userNameText;
@@ -354,6 +367,16 @@ public class UserController implements Initializable {
         if (selectedUser!=null && selectedItem!=null){
             buttonBasedOnBoth.setDisable(false);
         }
+    }
+
+    public void changeFilterUser(Event mouseEvent) {
+        UsersDto.filter=filterUser.getSelectionModel().getSelectedIndex();
+        updateSearchLists(mouseEvent);
+
+    }
+
+    public void resetFilters() {
+        UsersDto.resetFilter();
     }
     ///Search
 

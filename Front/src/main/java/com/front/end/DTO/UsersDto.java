@@ -14,9 +14,19 @@ public class UsersDto {
     String name;
     String email;
     String phone;
-
+    @JsonIgnore
+    public static int filter;
+    public static void resetFilter(){
+        filter=0;
+    }
     @Override
     public String toString() {
-        return name;
+        if (filter==0)
+            return name;
+        else if (filter==1)
+            return phone;
+        else if (filter==2)
+            return email;
+        else return name;
     }
 }
