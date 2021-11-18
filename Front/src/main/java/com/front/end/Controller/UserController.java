@@ -24,8 +24,11 @@ public class UserController implements Initializable {
 
     public TabPane TabPanel;
     public TextField searchUserSearchListPhone;
-
-
+    public static EmpDto loginEmp;
+    public Button butt1;
+    public Button butt2;
+    public Button butt3;
+    public Tab rabTab;
 
     ObjectMapper objectMapper = new ObjectMapper();
     public ChoiceBox<String> filterUser;
@@ -94,6 +97,19 @@ public class UserController implements Initializable {
                     resetFilters();
                 }
         );
+        loginEmp=LoginController.userAut;
+        currentEmp.getSelectionModel().select(loginEmp);
+        System.out.println(loginEmp);
+        SelectedEmp = loginEmp;
+        System.out.println("Initialization done");
+        if (SelectedEmp.getPriv().getAccess()!=1){
+            butt1.setDisable(true);
+            butt2.setDisable(true);
+            butt3.setDisable(true);
+            currentEmp.setDisable(true);
+            rabTab.setDisable(true);
+            TabPanel.getTabs().remove(rabTab);
+        }
     } //!!!
 
     public TextField userNameText;
@@ -147,7 +163,7 @@ public class UserController implements Initializable {
     }
     public void EmpChose(MouseEvent mouseEvent) {
         EmpDto empDto= empList.getSelectionModel().getSelectedItem();
-        empPhoneText.setText(empDto.getPhone());
+        empPhoneText.setText(empDto.getPassword());
         empNameText.setText(empDto.getName());
         empRoleChose.getSelectionModel().select(empDto.getPriv());
         EmpIdText.setText("ID: "+empDto.getId());
@@ -164,7 +180,7 @@ public class UserController implements Initializable {
     }
     public void EmpSave(MouseEvent mouseEvent) throws IOException {
        empList.getSelectionModel().getSelectedItem().setName(empNameText.getText());
-       empList.getSelectionModel().getSelectedItem().setPhone(empPhoneText.getText());
+       empList.getSelectionModel().getSelectedItem().setPassword(empPhoneText.getText());
        empList.getSelectionModel().getSelectedItem().setPriv(empRoleChose.getSelectionModel().getSelectedItem());
        ApiInterface.sendPost(empList.getSelectionModel().getSelectedItem(), "emp/upd");
     }
@@ -293,7 +309,7 @@ public class UserController implements Initializable {
 
         searchUserSearchList.textProperty().addListener((observable, oldValue, newValue) -> {
             for (UsersDto user: userList.getItems()){
-                if (user.getName().contains(newValue)) {
+                if (user.toString().contains(newValue)) {
                     userListSearch.getSelectionModel().select(user);
                     userListSearch.scrollTo(user);
                     System.out.println(user.getName());

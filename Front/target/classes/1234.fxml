@@ -90,19 +90,19 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Работник">
+            <Tab fx:id="rabTab" text="Работник">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="900.0">
                      <children>
                         <ListView onMouseClicked="#EmpChose" fx:id="empList" layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="244.0" />
-                        <Button onMouseClicked="#EmpNew" layoutX="626.0" layoutY="490.0" mnemonicParsing="false" text="Новый" />
-                        <Button onMouseClicked="#EmpSave" layoutX="687.0" layoutY="490.0" mnemonicParsing="false" text="Сохранить изменения" />
-                        <Button onMouseClicked="#EmpDel" layoutX="832.0" layoutY="490.0" mnemonicParsing="false" text="Удалить" />
+                        <Button fx:id="butt1" onMouseClicked="#EmpNew" layoutX="626.0" layoutY="490.0" mnemonicParsing="false" text="Новый" />
+                        <Button fx:id="butt2" onMouseClicked="#EmpSave" layoutX="687.0" layoutY="490.0" mnemonicParsing="false" text="Сохранить изменения" />
+                        <Button fx:id="butt3" onMouseClicked="#EmpDel" layoutX="832.0" layoutY="490.0" mnemonicParsing="false" text="Удалить" />
                         <TextField fx:id="empNameText" layoutX="394.0" layoutY="85.0" promptText="Имя" />
-                        <TextField fx:id="empPhoneText" layoutX="394.0" layoutY="138.0" promptText="Телефон" />
+                        <TextField fx:id="empPhoneText" layoutX="394.0" layoutY="138.0" promptText="Пароль" />
                         <ChoiceBox fx:id="empRoleChose" layoutX="394.0" layoutY="200.0" prefWidth="150.0" />
                         <Text layoutX="292.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО Работника" />
-                        <Text layoutX="312.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Телефон" />
+                        <Text layoutX="312.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль" />
                         <Text fx:id="EmpIdText" layoutX="669.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
                      </children>
                   </AnchorPane>

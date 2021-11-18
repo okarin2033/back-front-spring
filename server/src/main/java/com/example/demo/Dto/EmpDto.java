@@ -12,6 +12,6 @@ public class EmpDto {
     long id;
     @NotNull
     String name;
-    String phone;
+    String password;
     PrivDto priv;
 }

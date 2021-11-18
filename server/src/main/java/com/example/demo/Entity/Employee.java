@@ -18,11 +18,11 @@ public class Employee {
     @GeneratedValue
     Long id;
     String name;
-    String phone;
+    String password;
 
-    public Employee(String name, String phone) {
+    public Employee(String name, String password) {
         this.name=name;
-        this.phone=phone;
+        this.password=password;
     }
     @ManyToOne
     Priv priv;

@@ -14,7 +14,7 @@ import lombok.Setter;
 public class EmpDto {
     Long id;
     String name;
-    String phone;
+    String password;
 
 
     @JsonSerialize(as = PrivDto.class)

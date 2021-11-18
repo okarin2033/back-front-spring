@@ -19,7 +19,7 @@ public class EmployeeController {
     PrivRep privRep;
     @PostMapping("/add")
     public void addEmp(@RequestBody EmpDto empDto){
-        Employee employee= new Employee(empDto.getName(), empDto.getPhone());
+        Employee employee= new Employee(empDto.getName(), empDto.getPassword());
         empRep.save(employee);
         System.out.println();
     }
@@ -46,7 +46,7 @@ public class EmployeeController {
 
         employee.setName(empDto.getName());
         employee.setPriv(privRep.getById(empDto.getPriv().getId()));
-        employee.setPhone(empDto.getPhone());
+        employee.setPassword(empDto.getPassword());
         empRep.save(employee);
     }
 }
